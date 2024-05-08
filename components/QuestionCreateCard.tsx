@@ -1,4 +1,3 @@
-// components/QuestionCreateCard.tsx
 import React, { useState, useEffect } from 'react';
 import { Question, Option } from '@/types/quizTypes';
 
@@ -50,33 +49,49 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, initialQuest
         }
     };
 
+    const toggleCorrect = (id: number) => {
+      setOptions(options.map(option =>
+          option.id === id ? { ...option, correct: !option.correct } : option
+      ));
+    };
+
+    
+
     return (
-        <div className="p-4 shadow rounded bg-white">
-            <input
-                type="text"
-                value={questionText}
-                onChange={e => setQuestionText(e.target.value)}
-                placeholder="Enter the question"
-                className="w-full mb-4 p-2 border rounded"
-            />
-            {options.map((option, index) => (
-                <div key={index} className="flex items-center mb-2">
-                    <input
-                        type="text"
-                        value={option.text}
-                        onChange={e => handleOptionChange(option.id, e.target.value)}
-                        placeholder={`Option ${index + 1}`}
-                        className="flex-grow p-2 border rounded"
-                    />
-                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-red-500 text-white p-2 rounded">
-                        Remove
-                    </button>
-                </div>
-            ))}
-            <button onClick={handleAddOption} className="bg-blue-500 text-white p-2 rounded">Add Option</button>
-            <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded mt-4">Submit Question</button>
-        </div>
-    );
+      <div className="p-4 shadow rounded bg-white">
+          <input
+              type="text"
+              value={questionText}
+              onChange={e => setQuestionText(e.target.value)}
+              placeholder="Enter the question"
+              className="w-full mb-4 p-2 border rounded text-black"  // Ensure text color is black
+          />
+          {options.map((option, index) => (
+              <div key={index} className="flex items-center mb-2">
+                  <input
+                      type="text"
+                      value={option.text}
+                      onChange={e => handleOptionChange(option.id, e.target.value)}
+                      placeholder={`Option ${index + 1}`}
+                      className={`flex-grow p-2 border rounded text-black ${option.correct ? 'text-green-500' : 'text-black'}`}  // Conditionally apply green text
+                  />
+                  <button
+                      onClick={() => toggleCorrect(option.id)}
+                      className={`ml-2 p-2 rounded ${option.correct ? 'bg-green-500 text-white' : 'bg-gray-300 text-black'}`}
+                  >
+                      {option.correct ? 'Correct' : 'Mark as Correct'}
+                  </button>
+                  <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-red-500 text-white p-2 rounded">
+                      Remove
+                  </button>
+              </div>
+          ))}
+          <button onClick={handleAddOption} className="bg-blue-500 text-white p-2 rounded">Add Option</button>
+          <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded mt-4">
+              {index !== undefined ? 'Submit Changes' : 'Submit Question'}
+          </button>
+      </div>
+  );
 };
 
 export default QuestionCreateCard;

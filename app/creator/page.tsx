@@ -10,15 +10,15 @@ const CreatorPage: React.FC = () => {
     const [editIndex, setEditIndex] = useState<number | undefined>(undefined);
 
     const addOrUpdateQuestion = (newQuestion: Question, index?: number) => {
-        if (typeof index === 'number' && index >= 0 && index < questions.length) {
-            // Update the existing question
+        if (typeof index === 'number') {
             const updatedQuestions = [...questions];
             updatedQuestions[index] = newQuestion;
             setQuestions(updatedQuestions);
         } else {
-            // Add a new question
-            setQuestions(prev => [...prev, newQuestion]);
+            setQuestions([...questions, newQuestion]);
         }
+        // Reset index after update or add
+        setEditIndex(undefined);
     };
 
     const handleEditQuestion = (index: number) => {
