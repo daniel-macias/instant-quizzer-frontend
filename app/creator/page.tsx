@@ -1,39 +1,45 @@
 "use client"
 import React, { useState } from 'react';
 import QuestionCreateCard from '@/components/QuestionCreateCard';
+import { Question } from '@/types/quizTypes';
 
-// Define or import these types
-type Option = {
-    id: number;
-    text: string;
-};
 
-type Question = {
-    question: string;
-    options: Option[];
-};
 
-const QuizPage: React.FC = () => {
-    const [questions, setQuestions] = useState<Question[]>([]);  // Use the Question type for state
+const CreatorPage: React.FC = () => {
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [editIndex, setEditIndex] = useState<number | undefined>(undefined);
 
-    const addQuestion = (newQuestion: Question) => {  // Specify the type for newQuestion
-        setQuestions(prevQuestions => [...prevQuestions, newQuestion]);
+    const addOrUpdateQuestion = (newQuestion: Question, index?: number) => {
+        if (typeof index === 'number' && index >= 0 && index < questions.length) {
+            // Update the existing question
+            const updatedQuestions = [...questions];
+            updatedQuestions[index] = newQuestion;
+            setQuestions(updatedQuestions);
+        } else {
+            // Add a new question
+            setQuestions(prev => [...prev, newQuestion]);
+        }
+    };
+
+    const handleEditQuestion = (index: number) => {
+        setEditIndex(index);
     };
 
     return (
         <div>
             <h1>Create Your Quiz</h1>
-            <QuestionCreateCard addQuestion={addQuestion} />
+            <QuestionCreateCard
+                addOrUpdateQuestion={addOrUpdateQuestion}
+                initialQuestion={editIndex !== undefined ? questions[editIndex] : undefined}
+                index={editIndex}
+            />
             {questions.map((question, index) => (
-                <div key={index} className="mt-2 p-2 border">
-                    <p>Question: {question.question}</p>
-                    <ul>
-                        {question.options.map((option, i) => <li key={i}>{option.text}</li>)}
-                    </ul>
-                </div>
+                <button key={index} onClick={() => handleEditQuestion(index)} className="mt-2 p-2 border">
+                    {`Question ${index + 1}`}
+                </button>
             ))}
         </div>
     );
 };
 
-export default QuizPage;
+export default CreatorPage;
