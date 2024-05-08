@@ -25,11 +25,19 @@ const CreatorPage: React.FC = () => {
         setEditIndex(index);
     };
 
+    const deleteQuestion = (index: number) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions.splice(index, 1);
+        setQuestions(updatedQuestions);
+        setEditIndex(undefined);  // Reset to add new question mode
+    };
+
     return (
         <div>
             <h1>Create Your Quiz</h1>
             <QuestionCreateCard
                 addOrUpdateQuestion={addOrUpdateQuestion}
+                deleteQuestion={deleteQuestion}
                 initialQuestion={editIndex !== undefined ? questions[editIndex] : undefined}
                 index={editIndex}
             />

@@ -3,11 +3,12 @@ import { Question, Option } from '@/types/quizTypes';
 
 interface Props {
     addOrUpdateQuestion: (question: Question, index?: number) => void;  // Updated to handle adding or updating
+    deleteQuestion: (index: number) => void;
     initialQuestion?: Question;
     index?: number;  // Index of the question if it's being edited
 }
 
-const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, initialQuestion, index }) => {
+const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuestion, initialQuestion, index }) => {
     const [questionText, setQuestionText] = useState('');
     const [options, setOptions] = useState<Option[]>([{
       id: 0, text: '',
@@ -23,6 +24,23 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, initialQuest
             setOptions(initialQuestion.options);
         }
     }, [initialQuestion]);
+
+    useEffect(() => {
+      // Reset form when transitioning from edit mode to create mode
+      if (initialQuestion && index !== undefined) {
+          // We're in edit mode, set the form to the existing question's data
+          setQuestionText(initialQuestion.question);
+          setOptions(initialQuestion.options);
+      } else {
+          // No question is selected, clear the form
+          clearForm();
+      }
+    }, [initialQuestion, index]);
+
+    const clearForm = () => {
+        setQuestionText('');
+        setOptions([{ id: 0, text: '', correct: false }, { id: 1, text: '', correct: false }]);
+    };
 
     const handleOptionChange = (id: number, text: string) => {
         setOptions(options.map(option => option.id === id ? { ...option, text } : option));
@@ -54,9 +72,6 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, initialQuest
           option.id === id ? { ...option, correct: !option.correct } : option
       ));
     };
-
-    
-
     return (
       <div className="p-4 shadow rounded bg-white">
           <input
@@ -90,6 +105,11 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, initialQuest
           <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded mt-4">
               {index !== undefined ? 'Submit Changes' : 'Submit Question'}
           </button>
+          {index !== undefined && (
+              <button onClick={() => deleteQuestion(index)} className="bg-red-500 text-white p-2 rounded">
+                  Delete Question
+              </button>
+          )}
       </div>
   );
 };
