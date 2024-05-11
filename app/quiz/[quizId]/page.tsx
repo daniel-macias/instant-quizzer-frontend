@@ -68,8 +68,8 @@ const QuizPage: React.FC = () => {
     if (!quiz) return <p>No quiz found for ID: {quizId}</p>;
 
     return (
-        <div>
-            <h1>Quiz Page ID: {quiz?.id} - {quiz?.title}</h1>
+        <div className="flex flex-col items-center justify-center w-full py-4 bg-gray-100 min-h-screen">
+            <h1 className="text-xl font-bold text-center my-4 text-black">{quiz?.title}</h1>
             {quiz && <QuestionCard questions={quiz.questions} onSubmit={handleQuizSubmission} />}
         </div>
     );
