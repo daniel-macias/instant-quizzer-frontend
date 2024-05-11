@@ -14,6 +14,20 @@ interface Quiz {
     }[];
 }
 
+const handleQuizSubmission = (questions: Quiz['questions']) => {
+    // Calculate results
+    const results = questions.map(question => {
+        const userAnswers = question.userAnswers;
+        const correctAnswers = question.correctAnswers;
+        const isCorrect = correctAnswers.every((answerIndex) => userAnswers[answerIndex]) && 
+                          userAnswers.every((answered, index) => answered === correctAnswers.includes(index));
+        return { question: question.question, isCorrect };
+    });
+
+    // Here you can now set state to display results, or handle them as needed
+    console.log(results);
+};
+
 const QuizPage: React.FC = () => {
     const pathname = usePathname();
     const quizId = pathname.split('/')[2]; // Split and access the third segment
@@ -36,7 +50,8 @@ const QuizPage: React.FC = () => {
                         questions: data.questions.map((q: any) => ({
                             question: q.questionTitle,
                             options: q.possibleAnswers,
-                            correctAnswers: q.correctAnswers
+                            correctAnswers: q.correctAnswers,
+                            userAnswers: new Array(q.possibleAnswers.length).fill(false)
                         }))
                     };
                     setQuiz(formattedQuiz);
@@ -55,7 +70,7 @@ const QuizPage: React.FC = () => {
     return (
         <div>
             <h1>Quiz Page ID: {quiz?.id} - {quiz?.title}</h1>
-            {quiz && <QuestionCard questions={quiz.questions} />}
+            {quiz && <QuestionCard questions={quiz.questions} onSubmit={handleQuizSubmission} />}
         </div>
     );
 };
