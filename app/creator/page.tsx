@@ -76,27 +76,29 @@ const CreatorPage: React.FC = () => {
     };
 
     return (
-        <div>
-            <h1>Create Your Quiz</h1>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+            <h1 className="text-xl font-bold text-center mb-4 text-black">Create Your Quiz</h1>
             <input
                 type="text"
                 value={quizTitle}
                 onChange={(e) => setQuizTitle(e.target.value)}
                 placeholder="Enter Quiz Title"
-                className="w-full mb-4 p-2 border rounded text-black"
+                className="w-full max-w-md mb-4 p-2 border border-gray-300 rounded text-black"
             />
+<div className="flex overflow-x-auto w-full max-w-md mb-4 space-x-2">
+                {questions.map((_, index) => (
+                    <button key={index} onClick={() => handleEditQuestion(index)} className="min-w-max p-2 bg-white border border-gray-300 rounded hover:bg-blue-100 text-black">
+                        Q{index + 1}
+                    </button>
+                ))}
+            </div>
             <QuestionCreateCard
                 addOrUpdateQuestion={addOrUpdateQuestion}
                 deleteQuestion={deleteQuestion}
                 initialQuestion={editIndex !== undefined ? questions[editIndex] : undefined}
                 index={editIndex}
             />
-            {questions.map((question, index) => (
-                <button key={index} onClick={() => handleEditQuestion(index)} className="mt-2 p-2 border">
-                    {`Question ${index + 1}`}
-                </button>
-            ))}
-            <button onClick={publishQuiz} className="mt-4 p-2 bg-blue-500 text-white rounded">
+            <button onClick={publishQuiz} className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">
                 Publish Quiz and Share
             </button>
         </div>
