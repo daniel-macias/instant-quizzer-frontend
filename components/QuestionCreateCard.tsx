@@ -75,7 +75,7 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
       ));
     };
     return (
-        <div className="p-4 shadow rounded bg-white flex flex-col items-start">
+        <div className="p-4 shadow rounded bg-white flex flex-col items-center w-full max-w-lg mx-auto">
             <input
                 type="text"
                 value={questionText}
@@ -84,15 +84,18 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                 className="w-full mb-4 p-2 border rounded text-black"
             />
             {options.map((option, idx) => (
-                <div key={idx} className="flex items-center mb-2 w-full">
+                <div key={idx} className="flex flex-col md:flex-row items-center w-full mb-2">
                     <input
                         type="text"
                         value={option.text}
                         onChange={e => handleOptionChange(option.id, e.target.value)}
                         placeholder={`Option ${idx + 1}`}
-                        className={`flex-grow p-2 border rounded text-black ${option.correct ? 'text-green-500' : 'text-black'}`}
+                        className="flex-grow p-2 border rounded text-black mb-2 md:mb-0 md:mr-2"
                     />
-                    <button onClick={() => toggleCorrect(option.id)} className={`ml-2 p-2 rounded ${option.correct ? 'bg-green-500 text-white' : 'bg-gray-300 text-black'}`}>
+                    <button
+                        onClick={() => toggleCorrect(option.id)}
+                        className={`p-2 rounded ${option.correct ? 'bg-green-500 text-white' : 'bg-gray-300 text-black'}`}
+                    >
                         {option.correct ? 'Correct' : 'Mark as Correct'}
                     </button>
                     <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-red-500 text-white p-2 rounded">
@@ -100,10 +103,10 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                     </button>
                 </div>
             ))}
-            <button onClick={handleAddOption} className="bg-blue-500 text-white p-2 rounded mt-2 flex items-center">
-                <IconPlus className="mr-2" /> Option
+            <button onClick={handleAddOption} className="bg-blue-500 text-white p-2 rounded flex items-center">
+                <IconPlus className="mr-2" />Add Option
             </button>
-            <div className="w-full flex justify-between mt-4">
+            <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
                 <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded">
                     {index !== undefined ? 'Submit Changes' : 'Submit Question'}
                 </button>

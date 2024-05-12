@@ -85,9 +85,11 @@ const CreatorPage: React.FC = () => {
                 placeholder="Enter Quiz Title"
                 className="w-full max-w-md mb-4 p-2 border border-gray-300 rounded text-black"
             />
-<div className="flex overflow-x-auto w-full max-w-md mb-4 space-x-2">
+            <div className="flex overflow-x-auto w-full max-w-md mb-4 space-x-2">
                 {questions.map((_, index) => (
-                    <button key={index} onClick={() => handleEditQuestion(index)} className="min-w-max p-2 bg-white border border-gray-300 rounded hover:bg-blue-100 text-black">
+                    <button key={index}
+                        onClick={() => handleEditQuestion(index)}
+                        className={`min-w-max p-2 bg-white border ${index === editIndex ? 'border-blue-500' : 'border-gray-300'} rounded hover:bg-blue-100 text-black`}>
                         Q{index + 1}
                     </button>
                 ))}
