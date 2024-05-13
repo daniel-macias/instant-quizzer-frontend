@@ -68,14 +68,36 @@ const QuizPage: React.FC = () => {
         const results = questions.map(question => {
             const userAnswers = question.userAnswers;
             const correctAnswers = question.correctAnswers;
-            const isCorrect = correctAnswers.every((answerIndex) => userAnswers[answerIndex]) && 
+            const isCorrect = correctAnswers.every((answerIndex) => userAnswers[answerIndex]) &&
                               userAnswers.every((answered, index) => answered === correctAnswers.includes(index));
             return { question: question.question, isCorrect };
         });
     
-        setQuizState(QuizState.ViewingResults);
-        setResults(results);
-        console.log(results);
+        // Prepare the payload to send to the backend
+        const payload = {
+            personName: takerName,
+            responses: results.map(result => result.isCorrect)
+        };
+        
+        console.log(payload);
+    
+        // Send results to the backend
+        fetch(`http://localhost:5177/api/quizzes/${quizId}/results`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Submission successful', data);
+            setQuizState(QuizState.ViewingResults);
+            setResults(results);
+        })
+        .catch(error => {
+            console.error('Error submitting quiz results:', error);
+        });
     };
 
     const handleStartQuiz = () => {
