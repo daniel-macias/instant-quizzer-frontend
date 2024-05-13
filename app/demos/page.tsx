@@ -1,13 +1,13 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const QuizPage: React.FC = () => {
+const DemosPage: React.FC = () => {
 
     return (
         <div>
-            <p>About</p>
+            <p>Demos</p>
         </div>
     );
 };
 
-export default QuizPage;
+export default DemosPage;

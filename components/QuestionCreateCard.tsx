@@ -108,7 +108,7 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
             </button>
             <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
                 <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded">
-                    {index !== undefined ? 'Submit Changes' : 'Submit Question'}
+                    {index !== undefined ? 'Submit Changes' : 'Add Question to Quiz'}
                 </button>
                 {index !== undefined && (
                     <button onClick={() => deleteQuestion(index)} className="bg-red-500 text-white p-2 rounded">

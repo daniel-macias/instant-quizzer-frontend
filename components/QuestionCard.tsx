@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
 
 interface Question {
   question: string;
@@ -37,6 +38,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
     setCurrentQuestionIndex(nextIndex);
   };
 
+  const handlePrev = () => {
+    const prevIndex = currentQuestionIndex - 1 < 0 ? questions.length - 1 : currentQuestionIndex - 1;
+    setCurrentQuestionIndex(prevIndex);
+  };
+
   const handleSelectQuestion = (index: number) => {
     setCurrentQuestionIndex(index);
   };
@@ -54,33 +60,41 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
     <div className="flex flex-col items-center justify-center bg-gray-100 p-4">
         <motion.div
                 key={currentQuestionIndex} 
-                className=" bg-white w-full md:max-w-md p-4 shadow-lg rounded-lg"
+                className="bg-white w-full md:max-w-md p-4 shadow-lg rounded-lg"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5 }}
-            >
-            <h2 className="text-center text-lg font-semibold mb-4 text-black">{currentQuestion.question}</h2>
+                transition={{ duration: 0.5 }}>
+            <h2 className="text-center text-lg font-semibold mb-4 text-gray-800">{currentQuestion.question}</h2>
             <ul>
                 {currentQuestion.options.map((option, index) => (
-                <li key={index} className="flex justify-between items-center my-2">
-                    <button onClick={() => toggleOption(index)} className={`p-2 rounded ${currentQuestion.userAnswers[index] ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
-                        {option}
-                    </button>
-                </li>
-            ))}
+                    <li key={index} className="flex justify-between items-center my-2">
+                        <button
+                            onClick={() => toggleOption(index)}
+                            className={`p-2 rounded transition-colors duration-150 ${currentQuestion.userAnswers[index] ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-gray-400 hover:bg-gray-500 text-white'}`}>
+                            {option}
+                        </button>
+                    </li>
+                ))}
             </ul>
-            <div className="mt-6">
-                <button onClick={handleNext} className="p-2 bg-blue-500 text-white rounded">Next</button>
-                <button onClick={handleSubmit} className="p-2 mx-2 bg-green-500 text-white rounded">Submit Answers</button>
+            <div className="mt-6 flex space-x-2">
+                <button onClick={handlePrev} className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-150">
+                    <IconArrowLeft />
+                </button>
+                <button onClick={handleNext} className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-150">
+                    <IconArrowRight />
+                </button>
             </div>
-                
         </motion.div>
+        <button onClick={handleSubmit} className="p-2 mt-4 bg-green-500 hover:bg-green-600 text-white rounded transition-colors duration-150">Submit Answers</button>
         <div className="flex space-x-2 mt-4">
             {questions.map((_, index) => (
-            <button key={index} onClick={() => handleSelectQuestion(index)} className={`p-2 rounded ${index === currentQuestionIndex ? 'border-2 border-blue-400' : 'border-2 border-gray-200'} ${questions[index].userAnswers.some(answer => answer) ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}>
-                {index + 1}
-            </button>
+                <button
+                    key={index}
+                    onClick={() => handleSelectQuestion(index)}
+                    className={`p-2 rounded transition-colors duration-150 ${index === currentQuestionIndex ? 'border-2 border-blue-400' : 'border-2 border-gray-200'} ${questions[index].userAnswers.some(answer => answer) ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+                    {index + 1}
+                </button>
             ))}
         </div>
     </div>
