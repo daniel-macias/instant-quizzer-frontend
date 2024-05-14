@@ -77,19 +77,19 @@ const CreatorPage: React.FC = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-            <h1 className="text-xl font-bold text-center mb-4 text-black">Create Your Quiz</h1>
+            <h1 className="text-xl font-bold text-center mb-4 text-gray-800">Create Your Quiz</h1>
             <input
                 type="text"
                 value={quizTitle}
                 onChange={(e) => setQuizTitle(e.target.value)}
                 placeholder="Enter Quiz Title"
-                className="w-full max-w-md mb-4 p-2 border border-gray-300 rounded text-black"
+                className="w-full max-w-md mb-4 p-2 border border-gray-300 rounded text-gray-800"
             />
             <div className="flex overflow-x-auto w-full max-w-md mb-4 space-x-2">
                 {questions.map((_, index) => (
                     <button key={index}
                         onClick={() => handleEditQuestion(index)}
-                        className={`min-w-max p-2 bg-white border ${index === editIndex ? 'border-blue-500' : 'border-gray-300'} rounded hover:bg-blue-100 text-black`}>
+                        className={`min-w-max p-2 bg-white border ${index === editIndex ? 'border-blue-500' : 'border-gray-300'} rounded hover:bg-blue-100 text-gray-800`}>
                         Q{index + 1}
                     </button>
                 ))}

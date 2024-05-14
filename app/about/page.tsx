@@ -12,6 +12,13 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 
+  import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+  
+
 const QuizPage: React.FC = () => {
 
     return (
@@ -34,6 +41,12 @@ const QuizPage: React.FC = () => {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
+
+            <Popover>
+                <PopoverTrigger>Open</PopoverTrigger>
+                <PopoverContent>Place content for the popover here.</PopoverContent>
+            </Popover>
+
         </div>
     );
 };

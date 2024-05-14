@@ -47,9 +47,9 @@ export default function ResultsPage({ params }: ResultsPageProps) {
 
     if (!quiz || quiz.results.length === 0) {
         return (
-            <div className="text-center">
-                <p>There are no results... yet!</p>
-                <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Click here to take the quiz</button>
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+                <h2 className="text-xl font-bold text-center mb-4 text-gray-800">There are no results... yet!</h2>
+                <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">Click here to take the quiz</button>
             </div>
         );
     }
