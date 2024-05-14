@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Question, Option } from '@/types/quizTypes';
 import { IconTrash } from '@tabler/icons-react';
 import { IconPlus } from '@tabler/icons-react';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 
 interface Props {
     addOrUpdateQuestion: (question: Question, index?: number) => void;  // Updated to handle adding or updating
@@ -19,6 +20,8 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
       id: 1, text: '',
       correct: false
     }]);
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    const [popoverMessage, setPopoverMessage] = useState('');
 
     useEffect(() => {
         if (initialQuestion) {
@@ -49,23 +52,30 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
     };
 
     const handleAddOption = () => {
-        const newId = options.length;
-        if (newId < 5) {
-            setOptions([...options, { id: newId, text: '', correct: false }]);
+        if (options.length >= 5) {
+            setPopoverMessage('You cannot add more than 5 options.');
+            setPopoverOpen(true);
+            return;
         }
+        setOptions([...options, { id: options.length, text: '', correct: false }]);
     };
 
     const handleRemoveOption = (id: number) => {
-        if (options.length > 2) {
-            setOptions(options.filter(option => option.id !== id));
+        if (options.length <= 2) {
+            setPopoverMessage('You must have at least 2 options.');
+            setPopoverOpen(true);
+            return;
         }
+        setOptions(options.filter(option => option.id !== id));
     };
 
     const handleSubmit = () => {
-        if (questionText && options.length >= 2) {
+        if (options.some(opt => opt.correct)) {
             addOrUpdateQuestion({ question: questionText, options }, index);
-            setQuestionText('');
-            setOptions([{ id: 0, text: '', correct: false }, { id: 1, text: '', correct: false }]);
+            clearForm();
+        } else {
+            setPopoverMessage('You must select at least one correct option.');
+            setPopoverOpen(true);
         }
     };
 
@@ -116,6 +126,16 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                     </button>
                 )}
             </div>
+            {popoverOpen && (
+                <Popover open = {true}>
+                    <PopoverTrigger>
+                        <button onClick={() => setPopoverOpen(false)} className="fixed inset-0 w-full h-full cursor-default focus:outline-none"></button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <p className='text-black'>{popoverMessage}</p>
+                    </PopoverContent>
+                </Popover>
+            )}
         </div>
   );
 };
