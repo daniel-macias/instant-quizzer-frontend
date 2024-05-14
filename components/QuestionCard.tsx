@@ -2,6 +2,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 interface Question {
   question: string;
@@ -19,6 +30,8 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState<Question[]>(initialQuestions);
   const currentQuestion = questions[currentQuestionIndex];
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
 
   const toggleOption = (optionIndex: number) => {
     // Create a new array with updated userAnswers
@@ -50,10 +63,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
   const allQuestionsAnswered = questions.every(question => question.userAnswers.some(answer => answer));
 
   const handleSubmit = () => {
-    if (!allQuestionsAnswered && !confirm("Are you sure you want to submit? You haven't answered all the questions.")) {
+    if (!allQuestionsAnswered) {
+      setIsConfirmOpen(true);
       return;
-    }
-    onSubmit(questions);
+  }
+  onSubmit(questions);
   };
 
   return (
@@ -77,7 +91,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
                     </li>
                 ))}
             </ul>
-            <div className="mt-6 flex space-x-2">
+            <div className="mt-6 flex justify-end space-x-2 ">
                 <button onClick={handlePrev} className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-150">
                     <IconArrowLeft />
                 </button>
@@ -97,6 +111,26 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
                 </button>
             ))}
         </div>
+        <AlertDialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
+          <AlertDialogTrigger asChild>
+              <button className="hidden">Trigger</button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+              <AlertDialogTitle>Confirm Submission</AlertDialogTitle>
+              <AlertDialogDescription>
+                  Are you sure you want to submit? You haven't answered all the questions.
+              </AlertDialogDescription>
+              <AlertDialogFooter>
+                  <button onClick={() => setIsConfirmOpen(false)} className="bg-gray-500 text-white p-2 rounded">Cancel</button>
+                  <button onClick={() => {
+                      setIsConfirmOpen(false);
+                      onSubmit(questions);
+                  }} className="bg-blue-500 text-white p-2 rounded">
+                      Confirm
+                  </button>
+              </AlertDialogFooter>
+          </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

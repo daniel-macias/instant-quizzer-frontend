@@ -3,6 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import QuestionCard from '@/components/QuestionCard';
 import { IconX, IconCheck } from '@tabler/icons-react';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 interface Quiz {
     id: string;
@@ -32,6 +43,7 @@ const QuizPage: React.FC = () => {
     const [quizState, setQuizState] = useState<QuizState>(QuizState.InputName);
     const [takerName, setTakerName] = useState('');
     const [results, setResults] = useState<any[]>([]);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     useEffect(() => {
         if (quizId) { // Check if quizId is defined
@@ -102,7 +114,7 @@ const QuizPage: React.FC = () => {
 
     const handleStartQuiz = () => {
         if (!takerName) {
-            alert('Please enter your name before starting the quiz.');
+            setIsDialogOpen(true);
             return;
         }
         setQuizState(QuizState.TakingQuiz);
@@ -128,6 +140,22 @@ const QuizPage: React.FC = () => {
                         className="mb-4 p-2 border border-gray-300 rounded text-gray-800"
                     />
                     <button onClick={handleStartQuiz} className="mb-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Start Quiz</button>
+                    <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                        <AlertDialogTrigger asChild>
+                            <button className="hidden">Open</button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                            <AlertDialogTitle>Please Confirm</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Please enter your name before starting the quiz.
+                            </AlertDialogDescription>
+                            <AlertDialogFooter>
+                                <button onClick={() => setIsDialogOpen(false)} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                                    Ok
+                                </button>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                     <button onClick={handleViewResults} className="p-2 bg-green-500 text-white rounded hover:bg-green-600">View Results</button>
                 </div>
             );
