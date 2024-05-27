@@ -3,15 +3,31 @@ import React, { useState } from 'react';
 import QuestionCreateCard from '@/components/QuestionCreateCard';
 import { Question } from '@/types/quizTypes';
 import { useRouter } from 'next/navigation';
-
+import {
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogTrigger,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 
 const CreatorPage: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [editIndex, setEditIndex] = useState<number | undefined>(undefined);
     const [quizTitle, setQuizTitle] = useState('');
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [errorMessages, setErrorMessages] = useState<string[]>([]);
 
     const router = useRouter();
+
+    const validateQuiz = () => {
+        const errors = [];
+        if (!quizTitle.trim()) errors.push("a title");
+        if (questions.length === 0) errors.push("at least one question");
+        return errors;
+    };
 
     const addOrUpdateQuestion = (newQuestion: Question, index?: number) => {
         if (typeof index === 'number') {
@@ -52,6 +68,13 @@ const CreatorPage: React.FC = () => {
     };
 
     const publishQuiz = async () => {
+        const errors = validateQuiz();
+        if (errors.length > 0) {
+            setErrorMessages(errors);
+            setIsDialogOpen(true);
+            return;
+        }
+
         const quizData = transformData();
         console.log(quizData);
         try {
@@ -103,6 +126,18 @@ const CreatorPage: React.FC = () => {
             <button onClick={publishQuiz} className="mt-4 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">
                 Publish Quiz and Share
             </button>
+            <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <AlertDialogTrigger asChild>
+                    <button className="hidden">Open</button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogTitle>Missing elements from your quiz!</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        You are missing: {errorMessages.join(', ')}
+                    </AlertDialogDescription>
+                    <AlertDialogAction onClick={() => setIsDialogOpen(false)}>Ok</AlertDialogAction>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     );
 };

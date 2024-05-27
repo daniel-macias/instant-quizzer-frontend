@@ -137,6 +137,7 @@ const QuizPage: React.FC = () => {
                         placeholder="Enter your name"
                         value={takerName}
                         onChange={(e) => setTakerName(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleStartQuiz()}
                         className="mb-4 p-2 border border-gray-300 rounded text-gray-800"
                     />
                     <button onClick={handleStartQuiz} className="mb-2 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Start Quiz</button>

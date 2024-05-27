@@ -104,20 +104,20 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                     />
                     <button
                         onClick={() => toggleCorrect(option.id)}
-                        className={`p-2 rounded ${option.correct ? 'bg-maci-submit-dark text-white' : 'bg-gray-300 text-black'}`}
+                        className={`p-2 rounded ${option.correct ? 'bg-maci-submit-dark text-white hover:bg-maci-submit-darker' : 'bg-gray-300 text-black hover:bg-gray-400'}`}
                     >
                         {option.correct ? 'Correct' : 'Mark as Correct'}
                     </button>
-                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-maci-cancel-normal text-white p-2 rounded">
+                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-maci-cancel-normal text-white p-2 rounded hover:bg-maci-cancel-dark">
                         <IconTrash />
                     </button>
                 </div>
             ))}
-            <button onClick={handleAddOption} className="bg-maci-main-normal text-white p-2 rounded flex items-center">
+            <button onClick={handleAddOption} className="bg-maci-main-normal text-white p-2 rounded flex items-center hover:bg-maci-main-dark">
                 <IconPlus className="mr-2" />Add Option
             </button>
             <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
-                <button onClick={handleSubmit} className="bg-maci-submit-dark text-white p-2 rounded">
+                <button onClick={handleSubmit} className="bg-maci-submit-dark text-white p-2 rounded hover:bg-maci-submit-darker">
                     {index !== undefined ? 'Submit Changes' : 'Add Question to Quiz'}
                 </button>
                 {index !== undefined && (
