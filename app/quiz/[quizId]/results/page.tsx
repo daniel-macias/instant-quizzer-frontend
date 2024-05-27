@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 
 import { IconX, IconCheck } from '@tabler/icons-react';
+import Loader from '@/components/ui/loader';
 
 interface ResultsPageProps {
     params: {
@@ -42,7 +43,13 @@ export default function ResultsPage({ params }: ResultsPageProps) {
             });
     }, [quizId]);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+        return (
+          <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <Loader />
+          </div>
+        );
+      }
     if (error) return <p>Error: {error}</p>;
 
     if (!quiz || quiz.results.length === 0) {

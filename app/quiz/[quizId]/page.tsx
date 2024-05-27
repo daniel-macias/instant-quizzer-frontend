@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import QuestionCard from '@/components/QuestionCard';
 import { IconX, IconCheck } from '@tabler/icons-react';
+import Loader from '@/components/ui/loader';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -124,7 +125,13 @@ const QuizPage: React.FC = () => {
         router.push(`/quiz/${quizId}/results`);
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+        return (
+          <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+            <Loader />
+          </div>
+        );
+      }
     if (!quiz) return <p>No quiz found for ID: {quizId}</p>;
 
     switch (quizState) {
