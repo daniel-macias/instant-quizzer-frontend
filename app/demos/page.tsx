@@ -1,52 +1,54 @@
 "use client"
-import { useRouter } from 'next/navigation';
 import React from 'react';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 
 const projects = [
     {
-      title: "Stripe",
+      title: "Capitals of The World",
       description:
-        "A technology company that builds economic infrastructure for the internet.",
-      link: "https://stripe.com",
+        "Explore the capitals of countries around the globe in this geographic challenge.",
+      link: "http://localhost:3000/quiz/663f5a548735dbbfd885dc31",
     },
     {
-      title: "Netflix",
+      title: "The Periodic Table",
       description:
-        "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-      link: "https://netflix.com",
+        "Dive into the elements of the periodic table and test your knowledge of chemistry.",
+      link: "http://localhost:3000/quiz/6653a8d6f01ee9f3f1b8b85d",
     },
     {
-      title: "Google",
+      title: "Authors of Classic Books",
       description:
-        "A multinational technology company that specializes in Internet-related services and products.",
-      link: "https://google.com",
+        "Identify authors behind the masterpieces of classic literature in this literary quiz.",
+      link: "http://localhost:3000/quiz/6653a9b9f01ee9f3f1b8b85e",
     },
     {
-      title: "Meta",
+      title: "Tarantino Movie Trivia",
       description:
-        "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-      link: "https://meta.com",
+        "Test your knowledge on Quentin Tarantino's iconic films and their unforgettable scenes.",
+      link: "http://localhost:3000/quiz/6653aa57f01ee9f3f1b8b85f",
     },
     {
-      title: "Amazon",
+      title: "The French Revolution",
       description:
-        "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-      link: "https://amazon.com",
+        "Explore the pivotal events and figures of the French Revolution.",
+      link: "http://localhost:3000/quiz/6653aaf4f01ee9f3f1b8b860",
     },
     {
-      title: "Microsoft",
+      title: "Ancient Greek Philosophy",
       description:
-        "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-      link: "https://microsoft.com",
+        "Jump into the profound world of Ancient Greek philosophers and their enduring ideas.",
+      link: "http://localhost:3000/quiz/6653ab77f01ee9f3f1b8b861",
     },
   ];
 
 const DemosPage: React.FC = () => {
 
     return (
-        <div>
-            <HoverEffect items={projects} />
+        <div className="min-h-screen bg-gray-100 pt-10">
+            <div className="container mx-auto px-4">
+                <h1 className="text-2xl font-bold text-center text-gray-800 mb-10">Quiz Examples</h1>
+                <HoverEffect items={projects} />
+            </div>
         </div>
     );
 };
