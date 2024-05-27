@@ -49,7 +49,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
                 <h2 className="text-xl font-bold text-center mb-4 text-gray-800">There are no results... yet!</h2>
-                <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">Click here to take the quiz</button>
+                <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">Click here to take the quiz</button>
             </div>
         );
     }
@@ -65,7 +65,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
                             <AccordionContent className="bg-white p-4 shadow rounded text-black">
                                 {quiz.questions.map((question: any, qIndex: number) => (
                                     <div key={qIndex} className=" flex items-center py-2 border-b">
-                                        {question.questionTitle}: <span className={result.responses[qIndex] ? 'text-green-500' : 'text-red-500'}>
+                                        {question.questionTitle}: <span className={result.responses[qIndex] ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'}>
                                             {result.responses[qIndex] ? <IconCheck /> : <IconX />}
                                         </span>
                                     </div>
@@ -75,7 +75,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
                     ))}
         </Accordion>
         <div className="text-center">
-            <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 mt-2 bg-blue-500 text-white rounded hover:bg-blue-600">Take the quiz!</button>
+            <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 mt-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Take the quiz!</button>
         </div>
     </div>
 </div>

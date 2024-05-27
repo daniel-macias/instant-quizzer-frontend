@@ -104,20 +104,20 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                     />
                     <button
                         onClick={() => toggleCorrect(option.id)}
-                        className={`p-2 rounded ${option.correct ? 'bg-green-500 text-white' : 'bg-gray-300 text-black'}`}
+                        className={`p-2 rounded ${option.correct ? 'bg-maci-submit-dark text-white' : 'bg-gray-300 text-black'}`}
                     >
                         {option.correct ? 'Correct' : 'Mark as Correct'}
                     </button>
-                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-red-500 text-white p-2 rounded">
+                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-maci-cancel-normal text-white p-2 rounded">
                         <IconTrash />
                     </button>
                 </div>
             ))}
-            <button onClick={handleAddOption} className="bg-blue-500 text-white p-2 rounded flex items-center">
+            <button onClick={handleAddOption} className="bg-maci-main-normal text-white p-2 rounded flex items-center">
                 <IconPlus className="mr-2" />Add Option
             </button>
             <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
-                <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded">
+                <button onClick={handleSubmit} className="bg-maci-submit-dark text-white p-2 rounded">
                     {index !== undefined ? 'Submit Changes' : 'Add Question to Quiz'}
                 </button>
                 {index !== undefined && (

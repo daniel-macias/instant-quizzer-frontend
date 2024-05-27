@@ -139,7 +139,7 @@ const QuizPage: React.FC = () => {
                         onChange={(e) => setTakerName(e.target.value)}
                         className="mb-4 p-2 border border-gray-300 rounded text-gray-800"
                     />
-                    <button onClick={handleStartQuiz} className="mb-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Start Quiz</button>
+                    <button onClick={handleStartQuiz} className="mb-2 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Start Quiz</button>
                     <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <AlertDialogTrigger asChild>
                             <button className="hidden">Open</button>
@@ -150,13 +150,13 @@ const QuizPage: React.FC = () => {
                                 Please enter your name before starting the quiz.
                             </AlertDialogDescription>
                             <AlertDialogFooter>
-                                <button onClick={() => setIsDialogOpen(false)} className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                                <button onClick={() => setIsDialogOpen(false)} className="bg-maci-main-normal text-white p-2 rounded hover:bg-maci-main-dark">
                                     Ok
                                 </button>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>
-                    <button onClick={handleViewResults} className="p-2 bg-green-500 text-white rounded hover:bg-green-600">View Results</button>
+                    <button onClick={handleViewResults} className="p-2 bg-maci-submit-dark text-white rounded hover:bg-maci-submit-darker">View Results</button>
                 </div>
             );
         case QuizState.TakingQuiz:
@@ -174,13 +174,13 @@ const QuizPage: React.FC = () => {
                         {results.map((result, index) => (
                             <li key={index} className="text-gray-800 flex items-center">
                                 <span>{result.question}:</span>
-                                <span className={`${result.isCorrect ? 'text-green-500' : 'text-red-500'} flex items-center ml-2`}>
+                                <span className={`${result.isCorrect ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'} flex items-center ml-2`}>
                                     {result.isCorrect ? <IconCheck /> : <IconX />}
                                 </span>
                             </li>
                         ))}
                         </ul>
-                        <button onClick={handleViewResults} className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600">View Full Results</button>
+                        <button onClick={handleViewResults} className="mt-4 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">View Full Results</button>
                     </div>
                 );
     }

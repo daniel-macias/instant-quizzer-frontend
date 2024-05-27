@@ -30,7 +30,7 @@ const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
                     onClick={(event) => event.currentTarget.select()}
                     className="w-full p-2 border border-gray-300 rounded mb-2 text-black"
                 />
-                <button onClick={handleCopyToClipboard} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">Copy to clipboard</button>
+                <button onClick={handleCopyToClipboard} className="px-4 py-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">Copy to clipboard</button>
             </div>
         </div>
     );

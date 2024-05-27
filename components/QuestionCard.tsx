@@ -85,28 +85,28 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
                     <li key={index} className="flex justify-between items-center my-2">
                         <button
                             onClick={() => toggleOption(index)}
-                            className={`p-2 rounded transition-colors duration-150 ${currentQuestion.userAnswers[index] ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-gray-400 hover:bg-gray-500 text-white'}`}>
+                            className={`p-2 rounded transition-colors duration-150 ${currentQuestion.userAnswers[index] ? 'bg-maci-main-normal hover:bg-maci-main-dark text-white' : 'bg-soaring-eagle hover:bg-diving-dove text-white'}`}>
                             {option}
                         </button>
                     </li>
                 ))}
             </ul>
             <div className="mt-6 flex justify-end space-x-2 ">
-                <button onClick={handlePrev} className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-150">
+                <button onClick={handlePrev} className="p-2 bg-maci-main-normal hover:bg-maci-main-dark text-white rounded transition-colors duration-150">
                     <IconArrowLeft />
                 </button>
-                <button onClick={handleNext} className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors duration-150">
+                <button onClick={handleNext} className="p-2 bg-maci-main-normal hover:bg-maci-main-dark text-white rounded transition-colors duration-150">
                     <IconArrowRight />
                 </button>
             </div>
         </motion.div>
-        <button onClick={handleSubmit} className="p-2 mt-4 bg-green-500 hover:bg-green-600 text-white rounded transition-colors duration-150">Submit Answers</button>
+        <button onClick={handleSubmit} className="p-2 mt-4 bg-maci-submit-dark hover:bg-maci-submit-darker text-white rounded transition-colors duration-150">Submit Answers</button>
         <div className="flex space-x-2 mt-4">
             {questions.map((_, index) => (
                 <button
                     key={index}
                     onClick={() => handleSelectQuestion(index)}
-                    className={`p-2 rounded transition-colors duration-150 ${index === currentQuestionIndex ? 'border-2 border-blue-400' : 'border-2 border-gray-200'} ${questions[index].userAnswers.some(answer => answer) ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
+                    className={`p-2 rounded transition-colors duration-150 ${index === currentQuestionIndex ? 'border-2 border-maci-main-normal' : 'border-2 border-gray-200'} ${questions[index].userAnswers.some(answer => answer) ? 'bg-maci-main-dark hover:bg-maci-main-dark text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'}`}>
                     {index + 1}
                 </button>
             ))}
@@ -121,11 +121,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
                   Are you sure you want to submit? You haven't answered all the questions.
               </AlertDialogDescription>
               <AlertDialogFooter>
-                  <button onClick={() => setIsConfirmOpen(false)} className="bg-gray-500 text-white p-2 rounded">Cancel</button>
+                  <button onClick={() => setIsConfirmOpen(false)} className="bg-soaring-eagle text-white p-2 rounded">Cancel</button>
                   <button onClick={() => {
                       setIsConfirmOpen(false);
                       onSubmit(questions);
-                  }} className="bg-blue-500 text-white p-2 rounded">
+                  }} className="bg-maci-main-normal text-white p-2 rounded">
                       Confirm
                   </button>
               </AlertDialogFooter>

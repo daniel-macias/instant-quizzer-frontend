@@ -89,8 +89,8 @@ const CreatorPage: React.FC = () => {
                 {questions.map((_, index) => (
                     <button key={index}
                         onClick={() => handleEditQuestion(index)}
-                        className={`min-w-max p-2 bg-white border ${index === editIndex ? 'border-blue-500' : 'border-gray-300'} rounded hover:bg-blue-100 text-gray-800`}>
-                        Q{index + 1}
+                        className={`min-w-max p-2 bg-white border ${index === editIndex ? 'border-maci-main-normal' : 'border-gray-300'} rounded hover:bg-blue-100 text-gray-800`}>
+                        {index + 1}
                     </button>
                 ))}
             </div>
@@ -100,7 +100,7 @@ const CreatorPage: React.FC = () => {
                 initialQuestion={editIndex !== undefined ? questions[editIndex] : undefined}
                 index={editIndex}
             />
-            <button onClick={publishQuiz} className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">
+            <button onClick={publishQuiz} className="mt-4 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">
                 Publish Quiz and Share
             </button>
         </div>

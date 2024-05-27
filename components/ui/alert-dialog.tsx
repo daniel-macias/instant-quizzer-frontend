@@ -104,7 +104,7 @@ AlertDialogDescription.displayName =
   <AlertDialogPrimitive.Action
     ref={ref}
     className={cn(
-      "bg-blue-500 text-white hover:bg-blue-600 p-2 rounded transition-colors duration-150",
+      "bg-maci-main-normal text-white hover:bg-maci-main-dark p-2 rounded transition-colors duration-150",
       className
     )}
     {...props}

@@ -11,6 +11,20 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      colors:{
+        "maci-main-normal" : "#30336b",
+        "maci-main-dark" : "#130f40",
+        "maci-submit-normal" : "#badc58",
+        "maci-submit-dark" : "#6ab04c",
+        "maci-submit-darker" : "#4e8238",
+        "maci-cancel-normal" : "#ff7979",
+        "maci-cancel-dark" : "#eb4d4b",
+        "costal-breeze" : "#dff9fb",
+        "hint-of-ice" : "#c7ecee",
+        "soaring-eagle" : "#95afc0",
+        "wizard-grey" : "#535c68",
+        "diving-dove" : "#6a899c"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
