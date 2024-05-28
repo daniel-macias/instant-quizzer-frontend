@@ -83,7 +83,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
                         ))}
                     </Accordion>
                     <div className="text-center">
-                    <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 mt-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Take the quiz!</button>
+                    <button onClick={() => router.push(`/quiz/${quizId}`)} className="mt-4 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal text-[#fff] rounded-md font-light transition duration-200 ease-linear">Take the quiz!</button>
                     </div>
                 </div>
         </BackgroundWrapper>

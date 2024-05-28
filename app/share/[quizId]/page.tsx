@@ -37,7 +37,7 @@ const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
                     onClick={(event) => event.currentTarget.select()}
                     className="w-full p-2 border border-gray-300 rounded mb-2 text-black"
                 />
-                <button onClick={handleCopyToClipboard} className="px-4 py-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">Copy to clipboard</button>
+                <button onClick={handleCopyToClipboard} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal text-[#fff] rounded-md font-light transition duration-200 ease-linear">Copy to clipboard</button>
             </div>
             {popoverOpen && (
                 <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>

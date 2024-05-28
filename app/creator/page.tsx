@@ -124,7 +124,7 @@ const CreatorPage: React.FC = () => {
                 initialQuestion={editIndex !== undefined ? questions[editIndex] : undefined}
                 index={editIndex}
             />
-            <button onClick={publishQuiz} className="mt-4 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">
+            <button onClick={publishQuiz} className="mt-4 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal text-[#fff] rounded-md font-light transition duration-200 ease-linear">
                 Publish Quiz and Share
             </button>
             <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

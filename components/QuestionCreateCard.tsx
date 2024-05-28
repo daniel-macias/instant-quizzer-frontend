@@ -102,22 +102,24 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                         placeholder={`Option ${idx + 1}`}
                         className="flex-grow p-2 border rounded text-black mb-2 md:mb-0 md:mr-2"
                     />
-                    <button
-                        onClick={() => toggleCorrect(option.id)}
-                        className={`p-2 rounded ${option.correct ? 'bg-maci-submit-dark text-white hover:bg-maci-submit-darker' : 'bg-gray-300 text-black hover:bg-gray-400'}`}
-                    >
-                        {option.correct ? 'Correct' : 'Mark as Correct'}
-                    </button>
-                    <button onClick={() => handleRemoveOption(option.id)} className="ml-2 bg-maci-cancel-normal text-white p-2 rounded hover:bg-maci-cancel-dark">
-                        <IconTrash />
-                    </button>
+                    <div className="flex flex-row items-center">
+                        <button
+                            onClick={() => toggleCorrect(option.id)}
+                            className={`p-2 rounded rounded-r-none ${option.correct ? 'shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-submit-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear' : 'shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-gray-400 text-[#fff] rounded-md font-light transition duration-200 ease-linear'}`}
+                        >
+                            {option.correct ? 'Correct' : 'Mark as Correct'}
+                        </button>
+                        <button onClick={() => handleRemoveOption(option.id)} className="rounded-l-none shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-2 py-2 bg-maci-cancel-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear">
+                            <IconTrash />
+                        </button>
+                    </div>
                 </div>
             ))}
-            <button onClick={handleAddOption} className="bg-maci-main-normal text-white p-2 rounded flex items-center hover:bg-maci-main-dark">
+            <button onClick={handleAddOption} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal flex text-[#fff] rounded-md font-light transition duration-200 ease-linear">
                 <IconPlus className="mr-2" />Add Option
             </button>
             <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
-                <button onClick={handleSubmit} className="bg-maci-submit-dark text-white p-2 rounded hover:bg-maci-submit-darker">
+                <button onClick={handleSubmit} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-submit-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear">
                     {index !== undefined ? 'Submit Changes' : 'Add Question to Quiz'}
                 </button>
                 {index !== undefined && (
