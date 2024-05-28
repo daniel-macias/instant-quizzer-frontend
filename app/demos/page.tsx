@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import BackgroundWrapper from '@/components/ui/background-wrapper';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 
 const projects = [
@@ -44,12 +45,10 @@ const projects = [
 const DemosPage: React.FC = () => {
 
     return (
-        <div className="min-h-screen bg-gray-100 pt-10">
-            <div className="container mx-auto px-4">
-                <h1 className="text-2xl font-bold text-center text-gray-800 mb-10">Quiz Examples</h1>
-                <HoverEffect items={projects} />
-            </div>
-        </div>
+        <BackgroundWrapper>
+            <h1 className="text-2xl font-bold text-center text-gray-800 mb-10">Quiz Examples</h1>
+            <HoverEffect items={projects} />
+        </BackgroundWrapper>
     );
 };
 

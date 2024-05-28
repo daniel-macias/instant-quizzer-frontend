@@ -1,6 +1,7 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import BackgroundWrapper from '@/components/ui/background-wrapper';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 
 interface ShareQuizPageProps {
     params: {
@@ -9,13 +10,18 @@ interface ShareQuizPageProps {
 }
 
 const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
+    const [popoverOpen, setPopoverOpen] = useState(false);
+    const [popoverMessage, setPopoverMessage] = useState('');
     const quizLink = `http://localhost:3000/quiz/${params.quizId}`;
 
     const handleCopyToClipboard = () => {
         navigator.clipboard.writeText(quizLink).then(() => {
-            alert('Link copied to clipboard!'); 
+            setPopoverMessage('Link copied to clipboard!');
+            setPopoverOpen(true);
         }).catch(err => {
             console.error('Failed to copy text: ', err);
+            setPopoverMessage('Failed to copy text to clipboard!');
+            setPopoverOpen(true);
         });
     };
 
@@ -33,6 +39,16 @@ const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
                 />
                 <button onClick={handleCopyToClipboard} className="px-4 py-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">Copy to clipboard</button>
             </div>
+            {popoverOpen && (
+                <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+                    <PopoverTrigger asChild>
+                        <button className="hidden">Open</button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <p className="text-black">{popoverMessage}</p>
+                    </PopoverContent>
+                </Popover>
+            )}
         </BackgroundWrapper>
     );
 };
