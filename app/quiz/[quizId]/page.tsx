@@ -139,7 +139,7 @@ const QuizPage: React.FC = () => {
         case QuizState.InputName:
             return (
                 <BackgroundWrapper>
-                    <h1 className="text-xl font-bold text-center my-4 text-gray-800">{quiz.title}</h1>
+                    <h1 className="text-xl font-normal text-center my-4 text-gray-800">{quiz.title}</h1>
                     <input
                         type="text"
                         placeholder="Enter your name"
@@ -148,7 +148,7 @@ const QuizPage: React.FC = () => {
                         onKeyDown={(e) => e.key === 'Enter' && handleStartQuiz()}
                         className="mb-4 p-2 border border-gray-300 rounded text-gray-800"
                     />
-                    <button onClick={handleStartQuiz} className="mb-2 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Start Quiz</button>
+                    <button onClick={handleStartQuiz} className="mb-2 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal text-[#fff] rounded-md font-light transition duration-200 ease-linear">Start Quiz</button>
                     <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                         <AlertDialogTrigger asChild>
                             <button className="hidden">Open</button>
@@ -159,26 +159,26 @@ const QuizPage: React.FC = () => {
                                 Please enter your name before starting the quiz.
                             </AlertDialogDescription>
                             <AlertDialogFooter>
-                                <button onClick={() => setIsDialogOpen(false)} className="bg-maci-main-normal text-white p-2 rounded hover:bg-maci-main-dark">
+                                <button onClick={() => setIsDialogOpen(false)} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal text-[#fff] rounded-md font-light transition duration-200 ease-linear">
                                     Ok
                                 </button>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                     </AlertDialog>
-                    <button onClick={handleViewResults} className="p-2 bg-maci-submit-dark text-white rounded hover:bg-maci-submit-darker">View Results</button>
+                    <button onClick={handleViewResults} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-submit-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear">View Results</button>
                 </BackgroundWrapper>
             );
         case QuizState.TakingQuiz:
             return (
                 <BackgroundWrapper>
-                    <h1 className="text-xl font-bold text-center my-4 text-gray-800">{quiz.title}</h1>
+                    <h1 className="text-xl font-normal text-center my-4 text-gray-800">{quiz.title}</h1>
                     <QuestionCard questions={quiz.questions} onSubmit={handleQuizSubmission} />
                 </BackgroundWrapper>
             );
             case QuizState.ViewingResults:
                 return (
                     <BackgroundWrapper>
-                        <h1 className="text-xl font-bold text-center my-4 text-gray-800">Immediate Results</h1>
+                        <h1 className="text-xl font-normal text-center my-4 text-gray-800">Immediate Results</h1>
                         <ul>
                         {results.map((result, index) => (
                             <li key={index} className="text-gray-800 flex items-center">

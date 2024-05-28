@@ -13,7 +13,7 @@ const BackgroundWrapper: React.FC<BackgroundWrapperProps> = ({ children }) => {
                 <div className="w-full h-full bg-gradient-to-br from-transparent to-diving-dove dark:to-white opacity-50"></div>
             </div>
             {/* Content layer */}
-            <div className="flex flex-col items-center justify-center p-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto z-10 relative">
+            <div className="flex flex-col items-center justify-center p-4 mx-auto z-10 relative">
                 {children}
             </div>
         </div>

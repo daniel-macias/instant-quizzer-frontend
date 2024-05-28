@@ -5,7 +5,7 @@ import { HoverEffect } from '@/components/ui/card-hover-effect';
 
 const projects = [
     {
-      title: "Capitals of The World",
+      title: "Capitals of the World",
       description:
         "Explore the capitals of countries around the globe in this geographic challenge.",
       link: "http://localhost:3000/quiz/663f5a548735dbbfd885dc31",
@@ -46,7 +46,7 @@ const DemosPage: React.FC = () => {
 
     return (
         <BackgroundWrapper>
-            <h1 className="text-2xl font-bold text-center text-gray-800 mb-10">Quiz Examples</h1>
+            <h1 className="text-2xl font-normal text-center text-gray-800 mb-10">Quiz Examples</h1>
             <HoverEffect items={projects} />
         </BackgroundWrapper>
     );

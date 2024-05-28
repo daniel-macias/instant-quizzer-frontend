@@ -27,7 +27,7 @@ const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
 
     return (
         <BackgroundWrapper>
-            <h1 className="text-xl font-bold text-center mb-4 text-black">Congrats! Your quiz has been created successfully.</h1>
+            <h1 className="text-xl font-normal text-center mb-4 text-black">Congrats! Your quiz has been created successfully.</h1>
             <p className="text-center mb-4 text-black">Copy the following link and share it with someone else so they can take the quiz:</p>
             <div className="flex flex-col items-center w-full max-w-md p-4 bg-white shadow-lg rounded-lg">
                 <input

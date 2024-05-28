@@ -56,7 +56,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
     if (!quiz || quiz.results.length === 0) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-                <h2 className="text-xl font-bold text-center mb-4 text-gray-800">There are no results... yet!</h2>
+                <h2 className="text-xl font-normal text-center mb-4 text-gray-800">There are no results... yet!</h2>
                 <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200">Click here to take the quiz</button>
             </div>
         );
@@ -64,7 +64,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
 
     return (
         <BackgroundWrapper>
-                <h1 className="text-xl font-bold text-center mb-4 text-black">Quiz Results for: {quiz.quizTitle}</h1>
+                <h1 className="text-xl font-normal text-center mb-4 text-black">Quiz Results for: {quiz.quizTitle}</h1>
                 <div className="w-full max-w-4xl mx-auto">
                     <Accordion type="single" collapsible>
                         {quiz.results.map((result: any, index: number) => (

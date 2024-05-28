@@ -1,31 +1,31 @@
 "use client"
 import React from 'react';
+
 import { useRouter } from 'next/navigation';
+import BackgroundWrapper from '@/components/ui/background-wrapper';
 
 const QuizPage: React.FC = () => {
     const router = useRouter();
 
     return (
-        <div className="min-h-screen w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-maci-main-normal/[0.1] flex items-center justify-center p-4">
-            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                <div className="w-full h-full bg-gradient-to-br from-transparent to-diving-dove dark:to-white opacity-50"></div>
+      <BackgroundWrapper>
+            <h1 className="text-3xl font-light text-center mb-4 text-gray-800">Quick Quiz Maker</h1>
+            <p className="text-xl text-center mb-8 text-gray-600 font-light">
+                A fast quiz creator for teachers and casual users.
+            </p>
+            <button onClick={() => router.push('/creator')} className="w-full shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-submit-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear mb-4 text-xl">
+                Create Quiz
+            </button>
+            <div className="flex w-full space-x-4">
+              <button onClick={() => router.push('/demos')} className="flex-1 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-diving-dove text-[#fff] rounded-md font-light transition duration-200 ease-linear">
+                  Examples
+              </button>
+              <button onClick={() => router.push('/about')} className="flex-1 shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-soaring-eagle text-[#fff] rounded-md font-light transition duration-200 ease-linear">
+                  About
+              </button>
             </div>
-            <div className="flex flex-col items-center justify-center p-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
-                <h1 className="text-3xl font-bold text-center mb-4 text-gray-800">Quick Quiz Maker</h1>
-                <p className="text-xl text-center mb-8 text-gray-600">
-                    Full-stack fast quiz creator for educational and casual users.
-                </p>
-                <button onClick={() => router.push('/creator')} className="w-full p-3 mb-4 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark transition-colors duration-200 text-lg font-medium">
-                    Create Quiz
-                </button>
-                <button onClick={() => router.push('/demos')} className="w-full p-3 mb-4 bg-maci-submit-dark text-white rounded hover:bg-maci-submit-darker transition-colors duration-200 text-lg font-medium">
-                    View Examples
-                </button>
-                <button onClick={() => router.push('/about')} className="w-full p-3 mb-4 bg-soaring-eagle text-white rounded hover:bg-wizard-grey transition-colors duration-200 text-lg font-medium">
-                    About
-                </button>
-            </div>
-        </div>
+      </BackgroundWrapper>
+      
     );
 };
 

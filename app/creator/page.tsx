@@ -101,7 +101,7 @@ const CreatorPage: React.FC = () => {
 
     return (
         <BackgroundWrapper>
-            <h1 className="text-xl font-bold text-center mb-4 text-gray-800">Create Your Quiz</h1>
+            <h1 className="text-xl font-normal text-center mb-4 text-gray-800">Create Your Quiz</h1>
             <input
                 type="text"
                 value={quizTitle}
