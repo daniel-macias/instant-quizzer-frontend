@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import BackgroundWrapper from '@/components/ui/background-wrapper';
 import { useRouter } from 'next/navigation';
 import {
     Accordion,
@@ -62,29 +63,29 @@ export default function ResultsPage({ params }: ResultsPageProps) {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 w-full">
-            <h1 className="text-xl font-bold text-center mb-4 text-black">Quiz Results for: {quiz.quizTitle}</h1>
-            <div className="w-full max-w-4xl mx-auto">
-                <Accordion type="single" collapsible>
-                    {quiz.results.map((result: any, index: number) => (
-                        <AccordionItem key={index} value={`item-${index}`}>
-                            <AccordionTrigger className="text-lg font-medium bg-white shadow p-4 text-black">{result.personName}</AccordionTrigger>
-                            <AccordionContent className="bg-white p-4 shadow rounded text-black">
-                                {quiz.questions.map((question: any, qIndex: number) => (
-                                    <div key={qIndex} className=" flex items-center py-2 border-b">
-                                        {question.questionTitle}: <span className={result.responses[qIndex] ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'}>
-                                            {result.responses[qIndex] ? <IconCheck /> : <IconX />}
-                                        </span>
-                                    </div>
-                                ))}
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-        </Accordion>
-        <div className="text-center">
-            <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 mt-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Take the quiz!</button>
-        </div>
-    </div>
-</div>
+        <BackgroundWrapper>
+                <h1 className="text-xl font-bold text-center mb-4 text-black">Quiz Results for: {quiz.quizTitle}</h1>
+                <div className="w-full max-w-4xl mx-auto">
+                    <Accordion type="single" collapsible>
+                        {quiz.results.map((result: any, index: number) => (
+                            <AccordionItem key={index} value={`item-${index}`}>
+                                <AccordionTrigger className="text-lg font-medium bg-white shadow p-4 text-black">{result.personName}</AccordionTrigger>
+                                <AccordionContent className="bg-white p-4 shadow rounded text-black">
+                                    {quiz.questions.map((question: any, qIndex: number) => (
+                                        <div key={qIndex} className=" flex items-center py-2 border-b">
+                                            {question.questionTitle}: <span className={result.responses[qIndex] ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'}>
+                                                {result.responses[qIndex] ? <IconCheck /> : <IconX />}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                    <div className="text-center">
+                    <button onClick={() => router.push(`/quiz/${quizId}`)} className="p-2 mt-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">Take the quiz!</button>
+                    </div>
+                </div>
+        </BackgroundWrapper>
     );
 }

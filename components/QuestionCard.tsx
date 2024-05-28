@@ -71,7 +71,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center p-4">
         <motion.div
                 key={currentQuestionIndex} 
                 className="bg-white w-full md:max-w-md p-4 shadow-lg rounded-lg"

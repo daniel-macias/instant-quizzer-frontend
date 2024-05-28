@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import BackgroundWrapper from '@/components/ui/background-wrapper';
 import { usePathname, useRouter } from 'next/navigation';
 import QuestionCard from '@/components/QuestionCard';
 import { IconX, IconCheck } from '@tabler/icons-react';
@@ -137,7 +138,7 @@ const QuizPage: React.FC = () => {
     switch (quizState) {
         case QuizState.InputName:
             return (
-                <div className="flex flex-col items-center justify-center w-full py-4 bg-gray-100 min-h-screen">
+                <BackgroundWrapper>
                     <h1 className="text-xl font-bold text-center my-4 text-gray-800">{quiz.title}</h1>
                     <input
                         type="text"
@@ -165,18 +166,18 @@ const QuizPage: React.FC = () => {
                         </AlertDialogContent>
                     </AlertDialog>
                     <button onClick={handleViewResults} className="p-2 bg-maci-submit-dark text-white rounded hover:bg-maci-submit-darker">View Results</button>
-                </div>
+                </BackgroundWrapper>
             );
         case QuizState.TakingQuiz:
             return (
-                <div className="flex flex-col items-center justify-center w-full py-4 bg-gray-100 min-h-screen">
+                <BackgroundWrapper>
                     <h1 className="text-xl font-bold text-center my-4 text-gray-800">{quiz.title}</h1>
                     <QuestionCard questions={quiz.questions} onSubmit={handleQuizSubmission} />
-                </div>
+                </BackgroundWrapper>
             );
             case QuizState.ViewingResults:
                 return (
-                    <div className="flex flex-col items-center justify-center w-full py-4 bg-gray-100 min-h-screen">
+                    <BackgroundWrapper>
                         <h1 className="text-xl font-bold text-center my-4 text-gray-800">Immediate Results</h1>
                         <ul>
                         {results.map((result, index) => (
@@ -189,7 +190,7 @@ const QuizPage: React.FC = () => {
                         ))}
                         </ul>
                         <button onClick={handleViewResults} className="mt-4 p-2 bg-maci-main-normal text-white rounded hover:bg-maci-main-dark">View Full Results</button>
-                    </div>
+                    </BackgroundWrapper>
                 );
     }
 };

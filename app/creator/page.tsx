@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import BackgroundWrapper from '@/components/ui/background-wrapper';
 import QuestionCreateCard from '@/components/QuestionCreateCard';
 import { Question } from '@/types/quizTypes';
 import { useRouter } from 'next/navigation';
@@ -99,7 +100,7 @@ const CreatorPage: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+        <BackgroundWrapper>
             <h1 className="text-xl font-bold text-center mb-4 text-gray-800">Create Your Quiz</h1>
             <input
                 type="text"
@@ -138,7 +139,7 @@ const CreatorPage: React.FC = () => {
                     <AlertDialogAction onClick={() => setIsDialogOpen(false)}>Ok</AlertDialogAction>
                 </AlertDialogContent>
             </AlertDialog>
-        </div>
+        </BackgroundWrapper>
     );
 };
 
