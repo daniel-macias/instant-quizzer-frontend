@@ -115,8 +115,8 @@ const QuestionCreateCard: React.FC<Props> = ({ addOrUpdateQuestion, deleteQuesti
                     </div>
                 </div>
             ))}
-            <button onClick={handleAddOption} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-main-normal flex text-[#fff] rounded-md font-light transition duration-200 ease-linear">
-                <IconPlus className="mr-2" />Add Option
+            <button onClick={handleAddOption} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-4 py-2 bg-maci-main-normal flex text-[#fff] rounded-md font-light transition duration-200 ease-linear">
+                <IconPlus className="mr-2" />Option
             </button>
             <div className={`flex w-full mt-4 ${index === undefined ? 'justify-center' : 'justify-between'}`}>
                 <button onClick={handleSubmit} className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,40%)] px-8 py-2 bg-maci-submit-dark text-[#fff] rounded-md font-light transition duration-200 ease-linear">

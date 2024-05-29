@@ -28,7 +28,8 @@ const config: Config = {
         "hint-of-ice" : "#c7ecee",
         "soaring-eagle" : "#95afc0",
         "wizard-grey" : "#535c68",
-        "diving-dove" : "#6a899c"
+        "diving-dove" : "#6a899c",
+        "pure-apple" : "#6ab04c"
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
