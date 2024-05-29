@@ -139,7 +139,7 @@ const QuizPage: React.FC = () => {
         case QuizState.InputName:
             return (
                 <BackgroundWrapper>
-                    <h1 className="text-xl font-normal text-center my-4 text-gray-800">{quiz.title}</h1>
+                    <h1 className="text-2xl font-normal text-center my-4 text-gray-800">{quiz.title}</h1>
                     <input
                         type="text"
                         placeholder="Enter your name"
@@ -181,11 +181,18 @@ const QuizPage: React.FC = () => {
                         <h1 className="text-xl font-normal text-center my-4 text-gray-800">Immediate Results</h1>
                         <ul>
                         {results.map((result, index) => (
-                            <li key={index} className="text-gray-800 flex items-center">
-                                <span>{result.question}:</span>
-                                <span className={`${result.isCorrect ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'} flex items-center ml-2`}>
-                                    {result.isCorrect ? <IconCheck /> : <IconX />}
-                                </span>
+                            <li key={index} className="text-gray-800">
+                                <div className='flex items-center'>
+
+                                    <span className='font-bold'>{index + 1}.</span>
+                                    <span>{result.question}:</span>
+                                    <span className={`${result.isCorrect ? 'text-maci-submit-dark' : 'text-maci-cancel-normal'} flex items-center ml-2`}>
+                                        {result.isCorrect ? <IconCheck /> : <IconX />}
+                                    </span>
+                                </div>
+                                
+                                <p></p>
+                                
                             </li>
                         ))}
                         </ul>

@@ -85,7 +85,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
                     <li key={index} className="flex justify-between items-center my-2">
                         <button
                             onClick={() => toggleOption(index)}
-                            className={`p-2 rounded transition-colors duration-150 ${currentQuestion.userAnswers[index] ? 'bg-maci-main-normal hover:bg-maci-main-dark text-white' : 'bg-soaring-eagle hover:bg-diving-dove text-white'}`}>
+                            className={`w-full p-2 rounded transition-colors duration-150 ${currentQuestion.userAnswers[index] ? 'bg-maci-main-normal hover:bg-maci-main-dark text-white' : 'bg-soaring-eagle hover:bg-diving-dove text-white'}`}>
                             {option}
                         </button>
                     </li>
