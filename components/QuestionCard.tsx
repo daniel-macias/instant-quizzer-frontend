@@ -118,7 +118,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ questions: initialQuestions
           <AlertDialogContent>
               <AlertDialogTitle>Confirm Submission</AlertDialogTitle>
               <AlertDialogDescription>
-                  Are you sure you want to submit? You haven't answered all the questions.
+                  Are you sure you want to submit? You haven&apos;t answered all the questions.
               </AlertDialogDescription>
               <AlertDialogFooter>
                   <button onClick={() => setIsConfirmOpen(false)} className="bg-soaring-eagle text-white p-2 rounded">Cancel</button>
