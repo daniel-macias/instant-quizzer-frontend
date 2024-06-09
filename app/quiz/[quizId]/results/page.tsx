@@ -26,7 +26,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5177/api/quizzes/${quizId}`)
+        fetch(`https://instantquizzer.azurewebsites.net/api/quizzes/${quizId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

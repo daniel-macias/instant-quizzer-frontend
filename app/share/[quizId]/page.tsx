@@ -12,7 +12,7 @@ interface ShareQuizPageProps {
 const ShareQuizPage: React.FC<ShareQuizPageProps> = ({ params }) => {
     const [popoverOpen, setPopoverOpen] = useState(false);
     const [popoverMessage, setPopoverMessage] = useState('');
-    const quizLink = `http://localhost:3000/quiz/${params.quizId}`;
+    const quizLink = `https://instant-quizzer-frontend.vercel.app/quiz/${params.quizId}`;
 
     const handleCopyToClipboard = () => {
         navigator.clipboard.writeText(quizLink).then(() => {

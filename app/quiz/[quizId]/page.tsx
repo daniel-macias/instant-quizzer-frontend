@@ -49,7 +49,7 @@ const QuizPage: React.FC = () => {
 
     useEffect(() => {
         if (quizId) { // Check if quizId is defined
-            fetch(`http://localhost:5177/api/quizzes/${quizId}`)
+            fetch(`https://instantquizzer.azurewebsites.net/api/quizzes/${quizId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -96,7 +96,7 @@ const QuizPage: React.FC = () => {
         console.log(payload);
     
         // Send results to the backend
-        fetch(`http://localhost:5177/api/quizzes/${quizId}/results`, {
+        fetch(`https://instantquizzer.azurewebsites.net/api/quizzes/${quizId}/results`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
