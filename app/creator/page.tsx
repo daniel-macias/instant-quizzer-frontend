@@ -79,7 +79,7 @@ const CreatorPage: React.FC = () => {
         const quizData = transformData();
         console.log(quizData);
         try {
-            const response = await fetch('https://instantquizzer.azurewebsites.net/api/quizzes', {
+            const response = await fetch('https://instant-quizzer-backend.onrender.com/api/quizzes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
