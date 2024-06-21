@@ -48,6 +48,7 @@ export default function ResultsPage({ params }: ResultsPageProps) {
         return (
           <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <Loader />
+            <p className='text-gray-600 mt-4'>Please be patient! I am using the free version of Render, so if you are the first to use this app in a while, it requires a bit of time to warm up. Thanks!</p>
           </div>
         );
       }

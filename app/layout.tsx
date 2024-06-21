@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Quiz Quiz Maker",
+  title: "Quick Quiz Maker",
   description: "Fast way to create and share a quiz",
 };
 
